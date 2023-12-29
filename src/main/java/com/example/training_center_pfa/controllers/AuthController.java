@@ -39,7 +39,7 @@ import com.example.training_center_pfa.payload.request.LoginRequest;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/v1")
 public class AuthController {
   @Autowired
   AuthenticationManager authenticationManager;
