@@ -64,18 +64,6 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
-//	@Bean
-//	protected void configure(HttpSecurity http) throws Exception {
-//		http.cors().and().csrf().disable()
-//			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-//			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-//			.authorizeRequests().dispatcherTypeMatchers(HttpMethod.valueOf("/api/auth/**")).permitAll()
-//			.dispatcherTypeMatchers(HttpMethod.valueOf("/api/test/**")).permitAll()
-//			.anyRequest().authenticated();
-//
-//		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-//	}
-	
 	@Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.cors().and().csrf().disable()
@@ -83,7 +71,7 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
         .authorizeRequests().requestMatchers("/api/auth/**").permitAll()
         .requestMatchers("/api/test/**").permitAll()
-        .anyRequest().permitAll();
+        .anyRequest().authenticated();
     
     http.authenticationProvider(authenticationProvider());
 
