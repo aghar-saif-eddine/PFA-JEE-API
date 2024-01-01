@@ -1,4 +1,4 @@
-package com.example.training_center_pfa.service;
+package com.example.training_center_pfa.security.services;
 
 import com.example.training_center_pfa.models.Domain;
 import com.example.training_center_pfa.repository.DomainRepository;
@@ -12,10 +12,10 @@ public class DomainService {
 
     @Autowired
     private DomainRepository domainRepository;
-    public Domain getUserByUsername(String libelle) {
-        return domainRepository.findById(libelle).orElse(null);
-    }
-    // add a domain
+    public Domain getDomainByName(String domainName) {
+        return domainRepository.findById(domainName)
+                .orElseThrow(() -> new RuntimeException("Error: Domain not found with name " + domainName));
+    } // add a domain
     public Domain addDomain(Domain domain) {
         return domainRepository.save(domain);
     }

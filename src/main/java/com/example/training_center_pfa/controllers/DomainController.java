@@ -2,7 +2,7 @@ package com.example.training_center_pfa.controllers;
 
 
 import com.example.training_center_pfa.models.Domain;
-import com.example.training_center_pfa.service.DomainService;
+import com.example.training_center_pfa.security.services.DomainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
