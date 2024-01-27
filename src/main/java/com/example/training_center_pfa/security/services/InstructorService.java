@@ -38,15 +38,24 @@ public class InstructorService {
     }
     // UPDATE data of user
     public Instructor updateInstructor(Long instructorId, Instructor instructorDetails) {
-        Instructor instructor = instructorRepository.findById(Long.valueOf(String.valueOf(instructorId))).orElse(null);
+            Instructor instructor = instructorRepository.findById(instructorId).orElse(null);
 
-            instructor.setFullName(instructorDetails.getFullName());
-            instructor.setAge(instructorDetails.getAge());
-            instructor.setYearsOfExperience(instructorDetails.getYearsOfExperience());
-            Domain domain = domainService.getDomainByName(String.valueOf(instructorDetails.getDomain()));
-            instructor.setDomain(domain);
-            return instructorRepository.save(instructor);
+            if (instructor != null) {
+                instructor.setFullName(instructorDetails.getFullName());
+                instructor.setAge(instructorDetails.getAge());
+                instructor.setYearsOfExperience(instructorDetails.getYearsOfExperience());
 
+                // Ensure that domainService is not null before using it
+                if (domainService != null) {
+                    // Assuming "domain" in the JSON payload is the domain ID
+                    Integer domainId = instructorDetails.getDomain().getId();
+                    Domain domain = domainService.getDomainById(domainId);
+                    instructor.setDomain(domain);
+                }
 
+                return instructorRepository.save(instructor);
+            }
+
+            return null; // Handle the case where the instructor with the given ID is not found
+        }
     }
-}

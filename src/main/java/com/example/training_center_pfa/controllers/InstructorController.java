@@ -62,7 +62,7 @@ public class InstructorController {
         instructor.setAge(instructorRequest.getAge());
         // Set Domain
         String domainId = instructorRequest.getDomain();  // Assuming you have a method to get domain name from the request
-        Domain domain = domainService.getDomainByName(domainId);
+        Domain domain = domainService.getDomainById(Integer.valueOf(domainId));
         instructor.setDomain(domain);
         // Save Instructor
         instructorService.addInstructor(instructor);
@@ -92,7 +92,7 @@ public class InstructorController {
         try {
             instructorService.deleteInstructor(id);
             response.put("status", "200");
-            response.put("message", "Success");
+            response.put("message", "Instructor deleted successfully");
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             // Log the exception if needed
@@ -109,12 +109,12 @@ public class InstructorController {
         try {
             Instructor updatedInstructor = instructorService.updateInstructor(instructorId, instructor);
             response.put("status", "200");
-            response.put("message", "Success");
+            response.put("message", "instructor modifie");
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             // Log the exception if needed
             response.put("status", "500");
-            response.put("message", "Failed to update domain");
+            response.put("message", String.valueOf(e));
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }

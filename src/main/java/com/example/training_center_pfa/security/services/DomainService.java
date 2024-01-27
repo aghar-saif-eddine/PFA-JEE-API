@@ -12,9 +12,9 @@ public class DomainService {
 
     @Autowired
     private DomainRepository domainRepository;
-    public Domain getDomainByName(String domainName) {
-        return domainRepository.findById(domainName)
-                .orElseThrow(() -> new RuntimeException("Error: Domain not found with name " + domainName));
+    public Domain getDomainById(Integer domainID) {
+        return domainRepository.findById(String.valueOf(domainID))
+                .orElseThrow(() -> new RuntimeException("Error: Domain not found with name " + domainID));
     } // add a domain
     public Domain addDomain(Domain domain) {
         return domainRepository.save(domain);

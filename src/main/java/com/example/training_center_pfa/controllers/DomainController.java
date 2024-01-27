@@ -25,7 +25,7 @@ public class DomainController {
         try {
             Domain savedDomain = domainService.addDomain(domain);
             response.put("status", "200");
-            response.put("message", "Success");
+            response.put("message", "Domain added successfully!");
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             // Log the exception if needed
@@ -41,7 +41,7 @@ public class DomainController {
         try {
             List<Domain> domainList = domainService.getListDomain();
             response.put("status", "200");
-            response.put("message", "Success");
+            response.put("message", "List domain");
             response.put("data", domainList);
             return ResponseEntity.ok(response);
         } catch (Exception e) {
@@ -60,7 +60,7 @@ public class DomainController {
         try {
             Domain updatedDomain = domainService.updateDomain(domainId, domain);
             response.put("status", "200");
-            response.put("message", "Success");
+            response.put("message", "Domain updated successfully!");
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             // Log the exception if needed
@@ -76,7 +76,7 @@ public class DomainController {
         try {
             domainService.deleteDomain(id);
             response.put("status", "200");
-            response.put("message", "Success");
+            response.put("message", "Domain deleted successfully!");
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             // Log the exception if needed
